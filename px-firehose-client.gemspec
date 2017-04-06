@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "px-service-legacy-client", "1.0.2"
   spec.add_dependency "circuit_breaker", "~> 1.1"
   spec.add_dependency "aws-sdk", "~> 2.7"
-  spec.add_dependency "redis", "~> 0"
+  spec.add_dependency "redis", "~> 3"
 
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake", "~> 0"
