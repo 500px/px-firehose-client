@@ -26,7 +26,7 @@ Or install it yourself as:
 
 ### Basic Configuration
 
-qDefault configurations are set in *Px::Service::Firehose*, they can be changed by
+Default configurations are set in *Px::Service::Firehose*, they can be changed by
 passing block to *Px::Service::Firehose.configure*
 
 

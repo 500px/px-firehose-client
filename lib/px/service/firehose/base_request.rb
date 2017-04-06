@@ -31,7 +31,7 @@ module Px::Service::Firehose
       @last_throughput_exceeded = nil
 
       @buffer = []
-      @semaphore = Mutex.new
+      @mutex = Mutex.new
     end
 
     ##
@@ -76,7 +76,7 @@ module Px::Service::Firehose
     #
     # Returns the number of unsent messages.
     def queue_record(data)
-      @semaphore.synchronize do
+      @mutex.synchronize do
         data_blob = data.to_json
 
         @buffer << { data: data_blob }
