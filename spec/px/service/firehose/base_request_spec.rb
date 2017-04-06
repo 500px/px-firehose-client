@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe Px::Service::Kinesis::BaseRequest do
+describe Px::Service::Firehose::BaseRequest do
 
-  subject { Px::Service::Kinesis::BaseRequest.new.tap { |s| s.stream = "test" } }
-  let (:default_put_rate) { Px::Service::Kinesis::BaseRequest::DEFAULT_PUT_RATE }
+  subject { Px::Service::Firehose::BaseRequest.new.tap { |s| s.stream = "test" } }
+  let (:default_put_rate) { Px::Service::Firehose::BaseRequest::DEFAULT_PUT_RATE }
   let (:data) { {datakey: "value"} }
 
   before :each  do
     Timecop.freeze
-    stub_const("Px::Service::Kinesis::BaseRequest::FLUSH_LENGTH", 5)
+    stub_const("Px::Service::Firehose::BaseRequest::FLUSH_LENGTH", 5)
   end
 
   describe '#initialize' do
@@ -50,7 +50,7 @@ describe Px::Service::Kinesis::BaseRequest do
               failed_record_count: 1,
               records: [
                 {
-                  error_code: Aws::Kinesis::Errors::ProvisionedThroughputExceededException.code
+                  error_code: Aws::Firehose::Errors::ServiceUnavailableException.code
                 }
               ]
             }
@@ -91,7 +91,6 @@ describe Px::Service::Kinesis::BaseRequest do
       end
 
       context "when the buffer size reaches maximum" do
-
         it "flushes" do
           expect {
             203.times do
@@ -185,7 +184,6 @@ describe Px::Service::Kinesis::BaseRequest do
   end
 
   describe '#put_rate_decay' do
-
     context "no last limited" do
       it "returns default put rate" do
         expect(subject.send(:put_rate_decay)).to eq( default_put_rate )
@@ -193,7 +191,6 @@ describe Px::Service::Kinesis::BaseRequest do
     end
 
     context "when last limited" do
-
       context "was now" do
         it "returns put rate of 2x the default value" do
           subject.instance_variable_set(:@last_throughput_exceeded, Time.now)
@@ -221,9 +218,6 @@ describe Px::Service::Kinesis::BaseRequest do
           expect(subject.send(:put_rate_decay)).to eq( default_put_rate )
         end
       end
-
     end
-
   end
-
 end

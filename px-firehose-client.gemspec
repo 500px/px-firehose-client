@@ -1,15 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'px/service/kinesis/version'
+require 'px/service/firehose/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "px-kinesis-client"
-  spec.version       = Px::Service::Kinesis::VERSION
-  spec.authors       = ["Paul Xue"]
-  spec.email         = ["pxue@500px.com"]
-  spec.summary       = %q{Ruby wrapper for AWS Kinesis}
-  spec.homepage      = ""
+  spec.name          = "px-firehose-client"
+  spec.version       = Px::Service::Firehose::VERSION
+  spec.authors       = ["Paul Xue", "Kevin Martin"]
+  spec.email         = ["pxue@500px.com", "kevin@500px.com"]
+  spec.summary       = %q{Ruby wrapper for AWS Kinesis Firehose}
+  spec.homepage      = "https://github.com/Melraidin/px-firehose-client"
+  spec.description   = "Wrapper with circuit breakers for AWS Kinesis Firehose client."
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -19,8 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "px-service-legacy-client", "1.0.2"
   spec.add_dependency "circuit_breaker", "~> 1.1"
-  spec.add_dependency "aws-sdk", "~> 2.0.0"
-  spec.add_dependency "msgpack"
+  spec.add_dependency "aws-sdk", "~> 2.7"
   spec.add_dependency "redis"
 
   spec.add_development_dependency "bundler", "~> 1.6"
