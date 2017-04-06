@@ -1,1 +1,0 @@
-require 'px/service/kinesis'

@@ -6,4 +6,4 @@ Aws.config[:stub_responses] = true
 require 'bundler/setup'
 Bundler.setup
 
-require 'px/service/kinesis'
+require 'px/service/firehose'

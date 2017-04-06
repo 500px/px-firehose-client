@@ -1,7 +1,7 @@
 module Px
   module Service
-    module Kinesis
-      VERSION = "0.0.19"
+    module Firehose
+      VERSION = "0.1.0"
     end
   end
 end

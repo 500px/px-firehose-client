@@ -1,11 +1,10 @@
 module Px
   module Service
-    module Kinesis
+    module Firehose
       class << self
-        DefaultConfig = Struct.new(:region, :credentials, :shard_count, :redis, :dev_mode, :dev_queue_key, :logger, :max_buffer_length) do
+        DefaultConfig = Struct.new(:region, :credentials, :redis, :dev_mode, :dev_queue_key, :logger, :max_buffer_length) do
           def initialize
             self.region = AWS_DEFAULT_REGION
-            self.shard_count = DEFAULT_SHARD_COUNT
             self.credentials = Aws::SharedCredentials.new
             self.dev_mode = false
             self.dev_queue_key = nil
@@ -24,10 +23,6 @@ module Px
 
         def config
           @config || configure
-        end
-
-        def partition_key(data_blob)
-          Digest::MD5.hexdigest(data_blob)
         end
       end
     end

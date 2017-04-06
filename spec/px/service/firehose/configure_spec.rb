@@ -1,8 +1,7 @@
 require "spec_helper"
 
-describe Px::Service::Kinesis do
+describe Px::Service::Firehose do
   describe "config" do
-
     context "when config block is given" do
       subject { Px::Service::Kinesis }
       before :each do
@@ -20,6 +19,5 @@ describe Px::Service::Kinesis do
         expect(subject.config.shard_count).to eq(10)
       end
     end
-
   end
 end
