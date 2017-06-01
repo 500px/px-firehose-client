@@ -48,7 +48,7 @@ describe Px::Service::Firehose::BaseRequest do
             :put_records,
             {
               failed_record_count: 1,
-              records: [
+              request_responses: [
                 {
                   error_code: Aws::Firehose::Errors::ServiceUnavailableException.code
                 }
