@@ -54,7 +54,7 @@ module Px::Service::Firehose
           # Add any failed records to our next batch.
           tmp_buffer = []
           if response[:failed_put_count] > 0
-            response[:records].each_with_index do |r, index|
+            response[:request_responses].each_with_index do |r, index|
               next unless r.error_code
 
               if r.error_code == Aws::Firehose::Errors::ServiceUnavailableException.code
