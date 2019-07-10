@@ -77,7 +77,7 @@ module Px::Service::Firehose
     # Returns the number of unsent messages.
     def queue_record(data)
       @mutex.synchronize do
-        data_blob = data.to_json
+        data_blob = data.to_json + "\n"
 
         @buffer << { data: data_blob }
 
